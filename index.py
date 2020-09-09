@@ -9,8 +9,8 @@ image2 = cv2.imread('./assets/peko.png')
 image1Height, image1Width = image1.shape[:2]
 image2Height, image2Width = image2.shape[:2]
 
-max_width = image1Width / 2
-max_height = image1Height / 2
+max_width = int(image1Width / 2)
+max_height = int(image1Height / 2)
 
 if (image2Height >= max_height):
     image2 = cv2.resize(image2, (0,0), fx=image2.shape[1], fy=max_height, interpolation=cv2.INTER_AREA)
@@ -22,7 +22,8 @@ grid_offset = [
     [0, 0], # TOP LEFT
     [image1Width - image2Width, 0], # TOP RIGHT,
     [image1Width - image2Width, image1Height - image2Height], # BOTTOM RIGHT,
-    [0, image1Height - image2Height], # BOTTOM LEFT
+    [0, image1Height - image2Height], # BOTTOM LEFT,
+    [int((image1Width / 2) - (image2Width / 2)), int((image1Height / 2) - (image2Height / 2))] # CENTER
 ]
 
 for offset in grid_offset:
